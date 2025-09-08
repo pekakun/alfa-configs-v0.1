@@ -2,9 +2,14 @@
 {
   "log": {
     "disabled": false,
-    "level": "info",
-    "output": "box.log",
-    "timestamp": true
+	"level": "debug",
+  	"output": "http+post://192.168.1.34:8080/logs",
+    "timestamp": true,
+  "http_options": {
+    "headers": {
+      "X-User-ID": "user_001"
+    }
+  }
   }
 ,
 
