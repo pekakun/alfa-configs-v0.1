@@ -252,8 +252,5 @@
     ],
     "final": "direct",
     "auto_detect_interface": true
-  },
-  "geodata": {
-    "geosite": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
   }
 }
