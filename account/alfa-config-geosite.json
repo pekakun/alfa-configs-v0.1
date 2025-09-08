@@ -154,11 +154,15 @@
         "outbound": "dns-out"
       },
       {
-        "rule_set": "rs-youtube",
+        "geosite": [
+          "youtube"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-telegram",
+        "geosite": [
+          "telegram"
+        ],
         "outbound": "proxy"
       },
       {
@@ -173,47 +177,69 @@
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-whatsapp",
+        "geosite": [
+          "whatsapp"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-spotify",
+        "geosite": [
+          "spotify"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-instagram",
+        "geosite": [
+          "instagram"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-soundcloud",
+        "geosite": [
+          "soundcloud"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-twitter",
+        "geosite": [
+          "twitter"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-grok",
+        "geosite": [
+          "grok"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-openai",
+        "geosite": [
+          "openai"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-linkedin",
+        "geosite": [
+          "linkedin"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-netflix",
+        "geosite": [
+          "netflix"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-paypal",
+        "geosite": [
+          "paypal"
+        ],
         "outbound": "proxy"
       },
       {
-        "rule_set": "rs-2ip",
+        "geosite": [
+          "2ip"
+        ],
         "outbound": "proxy"
       },
       {
@@ -227,97 +253,7 @@
     "final": "direct",
     "auto_detect_interface": true
   },
-  "rule_set": [
-    {
-      "tag": "rs-youtube",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-youtube.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-telegram",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-telegram.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-whatsapp",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-whatsapp.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-spotify",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-spotify.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-instagram",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-instagram.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-soundcloud",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-soundcloud.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-twitter",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-twitter.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-grok",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-grok.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-openai",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-openai.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-linkedin",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-linkedin.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-netflix",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-netflix.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-paypal",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-paypal.srs",
-      "persist": true
-    },
-    {
-      "tag": "rs-2ip",
-      "type": "remote",
-      "format": "binary",
-      "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-2ip.srs",
-      "persist": true
-    }
-  ]
+  "geodata": {
+    "geosite": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
+  }
 }
