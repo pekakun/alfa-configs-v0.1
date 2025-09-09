@@ -9,6 +9,7 @@
 ,
 
   "dns": {
+    "strategy": "prefer_ipv4",
     "servers": [
       { "tag": "dns-remote", "address": "https://1.1.1.1/dns-query", "detour": "proxy" },
       { "tag": "dns-local", "address": "local", "detour": "direct" },
@@ -46,13 +47,12 @@
       "type": "tun",
       "tag": "tun-in",
       "mtu": 9000,
-      "inet4_address": "172.19.0.1/28",
+      "address": ["172.19.0.1/28", "fd00:5::1/64"],
       "auto_route": true,
       "strict_route": false,
       "endpoint_independent_nat": true,
       "stack": "gvisor",
-      "sniff": true,
-      "inet6_address": ["fd00:5::1/64"]
+      "sniff": true
     }
   ],
 
@@ -83,6 +83,8 @@
 
   "route": {
     "rules": [
+      { "ip_cidr": ["172.19.0.0/28", "fd00:5::/64"], "outbound": "block" },
+
       { "port": 53, "outbound": "dns-out" },
 
       { "domain_suffix": ["youtube.com","youtu.be","ytimg.com","googlevideo.com","ggpht.com","youtubei.googleapis.com"], "outbound": "proxy" },
@@ -110,7 +112,7 @@
 
       { "domain_suffix": ["paypal.com","paypalobjects.com","braintreepayments.com","braintreegateway.com","paypalcdn.com"], "outbound": "proxy" },
 
-      { "domain_suffix": ["2ip.ru","whoer.net","ipleak.net"], "outbound": "proxy" }, { "ip_version": 6, "outbound": "direct" },
+      { "domain_suffix": ["2ip.ru","whoer.net","ipleak.net"], "outbound": "proxy" }, { "ip_version": 6, "outbound": "proxy" },
 
       { "outbound": "direct" }
     ],
