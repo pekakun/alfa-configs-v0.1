@@ -7,6 +7,7 @@
   },
 
   "dns": {
+    "strategy": "prefer_ipv4",
     "servers": [
       { "tag": "dns-remote", "address": "https://1.1.1.1/dns-query", "detour": "proxy" },
       { "tag": "dns-local", "address": "local", "detour": "direct" },
@@ -78,7 +79,10 @@
 
   "route": {
     "rules": [
+
       { "port": 53, "outbound": "dns-out" },
+
+      { "ip_version": 6, "outbound": "proxy" },
 
       { "domain_suffix": ["youtube.com","youtu.be","ytimg.com","googlevideo.com","ggpht.com","youtubei.googleapis.com"], "outbound": "proxy" },
 
@@ -106,8 +110,6 @@
       { "domain_suffix": ["paypal.com","paypalobjects.com","braintreepayments.com","braintreegateway.com","paypalcdn.com"], "outbound": "proxy" },
 
       { "domain_suffix": ["2ip.ru","whoer.net","ipleak.net"], "outbound": "proxy" },
-
-      { "ip_version": 6, "outbound": "direct" },
 
       { "outbound": "direct" }
     ],
