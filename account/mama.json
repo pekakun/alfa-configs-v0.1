@@ -54,8 +54,8 @@
       "type": "vless",
       "tag": "proxy",
       "server": "62.77.155.239",
-      "server_port": 39132,
-      "uuid": "a70e7758-db75-4e2c-b48b-6558fb694b44",
+      "server_port": 443,
+      "uuid": "3e2c92d1-3660-4519-80e0-0109b5119923",
       "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
