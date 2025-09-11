@@ -1,0 +1,101 @@
+{
+  "log": {
+    "disabled": true,
+    "level": "error",
+    "timestamp": true
+  },
+  "dns": {
+    "strategy": "prefer_ipv4",
+    "servers": [
+      { "tag": "dns-remote", "address": "https://1.1.1.1/dns-query", "detour": "proxy" },
+      { "tag": "dns-local", "address": "local", "detour": "direct" },
+      { "tag": "dns-block", "address": "rcode://success" }
+    ],
+    "rules": [
+      {
+        "domain_suffix": [
+          "youtube.com", "youtu.be", "ytimg.com", "googlevideo.com", "ggpht.com", "youtubei.googleapis.com",
+          "t.me", "telegram.org", "telegram.me", "cdn-telegram.org",
+          "whatsapp.com", "whatsapp.net", "wa.me",
+          "spotify.com", "scdn.co", "spotifycdn.com", "audio-fa.scdn.co", "audio2-fa.scdn.co",
+          "spclient.wg.spotify.com", "ap.spotify.com", "upgrade.spotify.com",
+          "instagram.com", "cdninstagram.com", "ig.me", "fbcdn.net", "akamaihd.net",
+          "fb.com", "m.me", "fb.watch", "tfbnw.net",
+          "soundcloud.com", "sndcdn.com",
+          "x.com", "twitter.com", "t.co", "twimg.com",
+          "grok.com",
+          "chatgpt.com", "openai.com", "api.openai.com", "cdn.openai.com", "oaiusercontent.com", "oaistatic.com",
+          "facebook.com", "messenger.com",
+          "linkedin.com", "licdn.com", "static.licdn.com", "lnkd.in",
+          "netflix.com", "nflxvideo.net", "nflxso.net", "nflximg.net", "nflxext.com",
+          "paypal.com", "paypalobjects.com", "braintreepayments.com", "braintreegateway.com", "paypalcdn.com",
+          "2ip.ru", "2ip.io", "whoer.net", "ipleak.net"
+        ],
+        "server": "dns-remote"
+      }
+    ],
+    "final": "dns-local",
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "address": ["172.19.0.1/28", "fd00:5::1/64"],
+      "auto_route": true,
+      "strict_route": false,
+      "stack": "system",
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "62.77.155.239",
+      "server_port": 443,
+      "uuid": "46eb2dc4-078c-45b1-9342-a02e0bba0dd8",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "dns.nextdns.io",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "_kX7JfDxUyohLON8irk44xQX4ul2N0v5eIXQrZBPlUM",
+          "short_id": "67ce8a44"
+        }
+      }
+    },
+    { "type": "direct", "tag": "direct" },
+    { "type": "dns", "tag": "dns-out" },
+    { "type": "block", "tag": "block" }
+  ],
+  "route": {
+    "rules": [
+      { "port": 53, "outbound": "dns-out" },
+      { "ip_version": 6, "outbound": "proxy" },
+      { "domain_suffix": ["youtube.com", "youtu.be", "ytimg.com", "googlevideo.com", "ggpht.com", "youtubei.googleapis.com"], "outbound": "proxy" },
+      { "domain_suffix": ["t.me", "telegram.org", "telegram.me", "cdn-telegram.org"], "outbound": "proxy" },
+      { "ip_cidr": ["91.108.4.0/22", "91.108.8.0/22", "91.108.12.0/22", "91.108.16.0/22", "91.108.56.0/22", "149.154.160.0/20"], "outbound": "proxy" },
+      { "domain_suffix": ["whatsapp.com", "whatsapp.net", "wa.me"], "outbound": "proxy" },
+      { "domain_suffix": ["spotify.com", "scdn.co", "spotifycdn.com", "audio-fa.scdn.co", "audio2-fa.scdn.co", "spclient.wg.spotify.com", "ap.spotify.com", "upgrade.spotify.com"], "outbound": "proxy" },
+      { "domain_suffix": ["instagram.com", "cdninstagram.com", "ig.me", "fbcdn.net", "akamaihd.net", "fb.com", "m.me", "fb.watch", "tfbnw.net", "facebook.com", "messenger.com"], "outbound": "proxy" },
+      { "domain_suffix": ["soundcloud.com", "sndcdn.com"], "outbound": "proxy" },
+      { "domain_suffix": ["x.com", "twitter.com", "t.co", "twimg.com"], "outbound": "proxy" },
+      { "domain_suffix": ["grok.com"], "outbound": "proxy" },
+      { "domain_suffix": ["chatgpt.com", "openai.com", "api.openai.com", "cdn.openai.com", "oaiusercontent.com", "oaistatic.com"], "outbound": "proxy" },
+      { "domain_suffix": ["linkedin.com", "licdn.com", "static.licdn.com", "lnkd.in"], "outbound": "proxy" },
+      { "domain_suffix": ["netflix.com", "nflxvideo.net", "nflxso.net", "nflximg.net", "nflxext.com"], "outbound": "proxy" },
+      { "domain_suffix": ["paypal.com", "paypalobjects.com", "braintreepayments.com", "braintreegateway.com", "paypalcdn.com"], "outbound": "proxy" },
+      { "domain_suffix": ["2ip.ru", "whoer.net", "ipleak.net"], "outbound": "proxy" },
+      { "outbound": "direct" }
+    ],
+    "final": "direct",
+    "auto_detect_interface": true
+  }
+}
