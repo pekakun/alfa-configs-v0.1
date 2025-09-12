@@ -1,6 +1,6 @@
 {
   "log": {
-    "disabled": true,
+    "disabled": false,
     "level": "error",
     "timestamp": true
   },
@@ -29,7 +29,8 @@
           "linkedin.com", "licdn.com", "static.licdn.com", "lnkd.in",
           "netflix.com", "nflxvideo.net", "nflxso.net", "nflximg.net", "nflxext.com",
           "paypal.com", "paypalobjects.com", "braintreepayments.com", "braintreegateway.com", "paypalcdn.com",
-          "2ip.ru", "2ip.io", "whoer.net", "ipleak.net"
+          "2ip.ru", "2ip.io", "whoer.net", "ipleak.net", "speedtest.net", "fast.com", "speed.cloudflare.com", "speedtestcustom.com", "ooklaserver.net",
+gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com"
         ],
         "server": "dns-remote"
       }
@@ -55,7 +56,7 @@
       "tag": "proxy",
       "server": "62.77.155.239",
       "server_port": 443,
-      "uuid": "46eb2dc4-078c-45b1-9342-a02e0bba0dd8",
+      "uuid": "89a38c99-4158-4a31-a6df-3f0c009d3245",
       "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
@@ -93,6 +94,9 @@
       { "domain_suffix": ["netflix.com", "nflxvideo.net", "nflxso.net", "nflximg.net", "nflxext.com"], "outbound": "proxy" },
       { "domain_suffix": ["paypal.com", "paypalobjects.com", "braintreepayments.com", "braintreegateway.com", "paypalcdn.com"], "outbound": "proxy" },
       { "domain_suffix": ["2ip.ru", "whoer.net", "ipleak.net"], "outbound": "proxy" },
+{ "domain_suffix": ["speedtest.net", "fast.com", "speed.cloudflare.com", "speedtestcustom.com", "ooklaserver.net"], "outbound": "proxy" },
+{ "domain_suffix": ["gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com"], "outbound": "proxy" },
+
       { "outbound": "direct" }
     ],
     "final": "direct",
