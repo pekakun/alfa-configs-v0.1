@@ -29,8 +29,23 @@
           "linkedin.com", "licdn.com", "static.licdn.com", "lnkd.in",
           "netflix.com", "nflxvideo.net", "nflxso.net", "nflximg.net", "nflxext.com",
           "paypal.com", "paypalobjects.com", "braintreepayments.com", "braintreegateway.com", "paypalcdn.com",
-          "2ip.ru", "2ip.io", "whoer.net", "ipleak.net", "speedtest.net", "fast.com", "speed.cloudflare.com", "speedtestcustom.com", "ooklaserver.net", "gemini.google.com",
-		"bard.google.com", "generativelanguage.googleapis.com"
+          "2ip.ru", "2ip.io", "whoer.net", "ipleak.net",
+          "speedtest.net", "fast.com", "speed.cloudflare.com",
+          "speedtestcustom.com", "ooklaserver.net",
+          "gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com",
+          "pornhub.com", "phncdn.com", "pornhubpremium.com", "phprcdn.com", "phprcdn.net",
+          "xvideos.com", "xvideos-cdn.com",
+          "xhamster.com", "xhcdn.com",
+          "redtube.com", "redtubefiles.com",
+          "youporn.com", "ypncdn.com",
+          "tube8.com", "t8cdn.com",
+          "spankwire.com",
+          "youjizz.com",
+          "onlyfans.com", "onlyfans.com.cdn.cloudflare.net",
+          "fansly.com", "cdn.fansly.com",
+          "manyvids.com", "mvstatic.com",
+          "chaturbate.com", "edgecastcdn.net",
+          "bongacams.com", "bcvideo.xyz"
         ],
         "server": "dns-remote"
       }
@@ -93,10 +108,33 @@
       { "domain_suffix": ["linkedin.com", "licdn.com", "static.licdn.com", "lnkd.in"], "outbound": "proxy" },
       { "domain_suffix": ["netflix.com", "nflxvideo.net", "nflxso.net", "nflximg.net", "nflxext.com"], "outbound": "proxy" },
       { "domain_suffix": ["paypal.com", "paypalobjects.com", "braintreepayments.com", "braintreegateway.com", "paypalcdn.com"], "outbound": "proxy" },
+      {
+        "domain_suffix": [
+          "speedtest.net", "fast.com", "speed.cloudflare.com",
+          "speedtestcustom.com", "ooklaserver.net",
+          "gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "domain_suffix": [
+          "pornhub.com", "phncdn.com", "pornhubpremium.com", "phprcdn.com", "phprcdn.net",
+          "xvideos.com", "xvideos-cdn.com",
+          "xhamster.com", "xhcdn.com",
+          "redtube.com", "redtubefiles.com",
+          "youporn.com", "ypncdn.com",
+          "tube8.com", "t8cdn.com",
+          "spankwire.com",
+          "youjizz.com",
+          "onlyfans.com", "onlyfans.com.cdn.cloudflare.net",
+          "fansly.com", "cdn.fansly.com",
+          "manyvids.com", "mvstatic.com",
+          "chaturbate.com", "edgecastcdn.net",
+          "bongacams.com", "bcvideo.xyz"
+        ],
+        "outbound": "proxy"
+      },
       { "domain_suffix": ["2ip.ru", "whoer.net", "ipleak.net"], "outbound": "proxy" },
-{ "domain_suffix": ["speedtest.net", "fast.com", "speed.cloudflare.com", "speedtestcustom.com", "ooklaserver.net"], "outbound": "proxy" },
-{ "domain_suffix": ["gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com"], "outbound": "proxy" },
-
       { "outbound": "direct" }
     ],
     "final": "direct",
