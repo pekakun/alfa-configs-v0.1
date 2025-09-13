@@ -89,11 +89,18 @@
     },
     { "type": "direct", "tag": "direct" },
     { "type": "dns", "tag": "dns-out" },
-    { "type": "block", "tag": "block" }
+    { "type": "block", "tag": "block" }, 
+{
+  "type": "block",
+  "tag": "block-ipv6",
+  "ip_version": 6
+}
+
   ],
   "route": {
     "rules": [
       { "port": 53, "outbound": "dns-out" },
+	{ "ip_version": 6, "outbound": "block-ipv6" },
       { "domain_suffix": ["youtube.com", "youtu.be", "ytimg.com", "googlevideo.com", "ggpht.com", "youtubei.googleapis.com"], "outbound": "proxy" },
       { "domain_suffix": ["t.me", "telegram.org", "telegram.me", "cdn-telegram.org"], "outbound": "proxy" },
       { "ip_cidr": ["91.108.4.0/22", "91.108.8.0/22", "91.108.12.0/22", "91.108.16.0/22", "91.108.56.0/22", "149.154.160.0/20"], "outbound": "proxy" },
