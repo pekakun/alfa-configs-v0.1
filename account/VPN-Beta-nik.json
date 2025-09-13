@@ -92,7 +92,8 @@
     { "type": "block", "tag": "block" }, 
 {
   "type": "block",
-  "tag": "block-ipv6"
+  "tag": "block-ipv6",
+  "ip_version": 6
 }
 
   ],
