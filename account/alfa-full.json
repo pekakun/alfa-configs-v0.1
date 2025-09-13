@@ -1,0 +1,65 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "error",
+    "timestamp": true
+  },
+  "dns": {
+    "strategy": "prefer_ipv4",
+    "servers": [
+      { "tag": "dns-remote", "address": "https://1.1.1.1/dns-query", "detour": "proxy" },
+      { "tag": "dns-local", "address": "local", "detour": "direct" },
+      { "tag": "dns-block", "address": "rcode://success" }
+    ],
+    "final": "dns-remote",
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "address": ["172.19.0.1/28", "fd00:5::1/64"],
+      "auto_route": true,
+      "strict_route": false,
+      "stack": "system",
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "62.77.155.239",
+      "server_port": 443,
+      "uuid": "5e0e26ba-1d30-42f7-8ed3-431f682d9f85",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "dns.nextdns.io",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "_kX7JfDxUyohLON8irk44xQX4ul2N0v5eIXQrZBPlUM",
+          "short_id": "67ce8a44"
+        }
+      }
+    },
+    { "type": "direct", "tag": "direct" },
+    { "type": "dns", "tag": "dns-out" },
+    { "type": "block", "tag": "block" },
+    { "type": "block", "tag": "block-ipv6" }
+  ],
+  "route": {
+    "rules": [
+      { "port": 53, "outbound": "dns-out" },
+      { "ip_version": 6, "outbound": "block-ipv6" },
+      { "outbound": "proxy" }
+    ],
+    "final": "proxy",
+    "auto_detect_interface": true
+  }
+}
