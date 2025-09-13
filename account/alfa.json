@@ -71,7 +71,7 @@
       "tag": "proxy",
       "server": "62.77.155.239",
       "server_port": 443,
-      "uuid": "4736a9ba-cfa7-4b6f-a4ef-625e0dd7d542",
+      "uuid": "5e0e26ba-1d30-42f7-8ed3-431f682d9f85",
       "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
