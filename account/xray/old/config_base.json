@@ -1,105 +1,75 @@
 {
-  "log": {
-    "access": "none",
-    "dnsLog": true,
-    "error": "",
-    "loglevel": "warning",
-    "maskAddress": ""
+  "api": {
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ],
+    "tag": "api"
   },
-  "routing": {
-    "domainStrategy": "AsIs",
-    "rules": [
-      {
-        "type": "field",
-        "inboundTag": [
-          "api"
-        ],
-        "outboundTag": "api"
-      },
-      {
-        "type": "field",
-        "outboundTag": "blocked",
-        "ip": [
-          "geoip:private"
-        ]
-      },
-      {
-        "type": "field",
-        "outboundTag": "blocked",
-        "protocol": [
-          "bittorrent"
-        ]
-      },
-      {
-        "type": "field",
-        "domain": [
-          "geosite:category-ads-all"
-        ],
-        "outboundTag": "blocked"
-      }
-    ]
-  },
+  "burstObservatory": null,
   "dns": {
+    "queryStrategy": "UseIP",
     "servers": [
       {
         "address": "tcp+tls://8.8.8.8",
-        "port": 853,
+        "disableCache": false,
         "domains": [],
         "expectIPs": [],
-        "unexpectedIPs": [],
+        "finalQuery": false,
+        "port": 853,
         "queryStrategy": "UseIP",
         "skipFallback": false,
-        "disableCache": false,
-        "finalQuery": false
+        "unexpectedIPs": []
       },
       {
         "address": "tcp+tls://1.1.1.1",
-        "port": 853,
+        "disableCache": false,
         "domains": [],
         "expectIPs": [],
-        "unexpectedIPs": [],
+        "finalQuery": false,
+        "port": 853,
         "queryStrategy": "UseIP",
         "skipFallback": false,
-        "disableCache": false,
-        "finalQuery": false
+        "unexpectedIPs": []
       },
       {
         "address": "https://dns.google/dns-query",
-        "port": null,
+        "disableCache": false,
         "domains": [],
         "expectIPs": [],
-        "unexpectedIPs": [],
+        "finalQuery": false,
+        "port": null,
         "queryStrategy": "UseIP",
         "skipFallback": false,
-        "disableCache": false,
-        "finalQuery": false
+        "unexpectedIPs": []
       },
       {
         "address": "https://cloudflare-dns.com/dns-query",
-        "port": null,
+        "disableCache": false,
         "domains": [],
         "expectIPs": [],
-        "unexpectedIPs": [],
+        "finalQuery": false,
+        "port": null,
         "queryStrategy": "UseIP",
         "skipFallback": false,
-        "disableCache": false,
-        "finalQuery": false
+        "unexpectedIPs": []
       },
       {
         "address": "localhost",
-        "port": 53,
+        "disableCache": false,
         "domains": [],
         "expectIPs": [],
-        "unexpectedIPs": [],
+        "finalQuery": false,
+        "port": 53,
         "queryStrategy": "UseIP",
         "skipFallback": false,
-        "disableCache": false,
-        "finalQuery": false
+        "unexpectedIPs": []
       }
     ],
-    "queryStrategy": "UseIP",
     "tag": "dns_inbound"
   },
+  "fakedns": null,
   "inbounds": [
     {
       "listen": "127.0.0.1",
@@ -108,9 +78,9 @@
       "settings": {
         "address": "127.0.0.1"
       },
+      "sniffing": null,
       "streamSettings": null,
-      "tag": "api",
-      "sniffing": null
+      "tag": "api"
     },
     {
       "listen": null,
@@ -152,6 +122,17 @@
         "decryption": "none",
         "encryption": "none"
       },
+      "sniffing": {
+        "destOverride": [
+          "http",
+          "tls",
+          "quic",
+          "fakedns"
+        ],
+        "enabled": true,
+        "metadataOnly": false,
+        "routeOnly": false
+      },
       "streamSettings": {
         "network": "tcp",
         "realitySettings": {
@@ -186,37 +167,37 @@
           }
         }
       },
-      "tag": "inbound-443",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls",
-          "quic",
-          "fakedns"
-        ],
-        "metadataOnly": false,
-        "routeOnly": false
-      }
+      "tag": "inbound-443"
     }
   ],
+  "log": {
+    "access": "none",
+    "dnsLog": true,
+    "error": "",
+    "loglevel": "warning",
+    "maskAddress": ""
+  },
+  "metrics": {
+    "listen": "127.0.0.1:11111",
+    "tag": "metrics_out"
+  },
+  "observatory": null,
   "outbounds": [
     {
-      "tag": "direct",
       "protocol": "freedom",
       "settings": {
         "domainStrategy": "AsIs",
-        "redirect": "",
-        "noises": []
-      }
+        "noises": [],
+        "redirect": ""
+      },
+      "tag": "direct"
     },
     {
-      "tag": "blocked",
       "protocol": "blackhole",
-      "settings": {}
+      "settings": {},
+      "tag": "blocked"
     }
   ],
-  "transport": null,
   "policy": {
     "levels": {
       "0": {
@@ -231,21 +212,33 @@
       "statsOutboundUplink": false
     }
   },
-  "api": {
-    "tag": "api",
-    "services": [
-      "HandlerService",
-      "LoggerService",
-      "StatsService"
+  "reverse": null,
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api",
+        "type": "field"
+      },
+      {
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "blocked",
+        "type": "field"
+      },
+      {
+        "outboundTag": "blocked",
+        "protocol": [
+          "bittorrent"
+        ],
+        "type": "field"
+      }
     ]
   },
   "stats": {},
-  "reverse": null,
-  "fakedns": null,
-  "observatory": null,
-  "burstObservatory": null,
-  "metrics": {
-    "tag": "metrics_out",
-    "listen": "127.0.0.1:11111"
-  }
+  "transport": null
 }
