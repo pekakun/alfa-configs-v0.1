@@ -109,7 +109,6 @@
   ],
 
   "route": {
-    "domainStrategy": "IPIfNonMatch",
     "rules": [
       { "port": 53, "outbound": "dns-out" },
       { "ip_version": 6, "outbound": "block-ipv6" },
