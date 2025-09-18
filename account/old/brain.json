@@ -4,7 +4,6 @@
     "level": "error",
     "timestamp": true
   },
-
   "dns": {
     "strategy": "prefer_ipv4",
     "servers": [
@@ -30,21 +29,10 @@
           "linkedin.com", "licdn.com", "static.licdn.com", "lnkd.in",
           "netflix.com", "nflxvideo.net", "nflxso.net", "nflximg.net", "nflxext.com",
           "paypal.com", "paypalobjects.com", "braintreepayments.com", "braintreegateway.com", "paypalcdn.com",
-          "2ip.ru", "whoer.net", "ipleak.net",
+          "2ip.ru", "2ip.io", "whoer.net", "ipleak.net",
           "speedtest.net", "fast.com", "speed.cloudflare.com",
           "speedtestcustom.com", "ooklaserver.net",
-
           "gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com",
-          "ai.google.dev", "ai.googleusercontent.com",
-          "googleapis.com", "gstatic.com",
-          "clients6.google.com", "clients4.google.com",
-          "firebaseinstallations.googleapis.com", "firebaseremoteconfig.googleapis.com",
-
-          "github.com", "githubusercontent.com", "raw.githubusercontent.com",
-          "gist.github.com", "githubassets.com", "github.dev", "github.io",
-
-          "meet.google.com", "hangouts.googleapis.com", "meetings.googleapis.com",
-
           "pornhub.com", "phncdn.com", "pornhubpremium.com", "phprcdn.com", "phprcdn.net",
           "xvideos.com", "xvideos-cdn.com",
           "xhamster.com", "xhcdn.com",
@@ -57,10 +45,7 @@
           "fansly.com", "cdn.fansly.com",
           "manyvids.com", "mvstatic.com",
           "chaturbate.com", "edgecastcdn.net",
-          "bongacams.com", "bcvideo.xyz",
-
-          "apple.com", "icloud.com", "mzstatic.com", "akamaized.net",
-          "apple-cloudkit.com", "app-attest.apple.com", "push.apple.com"
+          "bongacams.com", "bcvideo.xyz"
         ],
         "server": "dns-remote"
       }
@@ -68,7 +53,6 @@
     "final": "dns-local",
     "independent_cache": true
   },
-
   "inbounds": [
     {
       "type": "tun",
@@ -76,13 +60,11 @@
       "mtu": 9000,
       "address": ["172.19.0.1/28", "fd00:5::1/64"],
       "auto_route": true,
-      "strict_route": true,
+      "strict_route": false,
       "stack": "system",
-      "sniff": true,
-      "udp_timeout": 300
+      "sniff": true
     }
   ],
-
   "outbounds": [
     {
       "type": "vless",
@@ -94,7 +76,10 @@
       "tls": {
         "enabled": true,
         "server_name": "dns.nextdns.io",
-        "utls": { "enabled": true, "fingerprint": "chrome" },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
         "reality": {
           "enabled": true,
           "public_key": "_kX7JfDxUyohLON8irk44xQX4ul2N0v5eIXQrZBPlUM",
@@ -104,15 +89,11 @@
     },
     { "type": "direct", "tag": "direct" },
     { "type": "dns", "tag": "dns-out" },
-    { "type": "block", "tag": "block" },
-    { "type": "block", "tag": "block-ipv6" }
+    { "type": "block", "tag": "block" }
   ],
-
   "route": {
     "rules": [
       { "port": 53, "outbound": "dns-out" },
-      { "ip_version": 6, "outbound": "block-ipv6" },
-
       { "domain_suffix": ["youtube.com", "youtu.be", "ytimg.com", "googlevideo.com", "ggpht.com", "youtubei.googleapis.com"], "outbound": "proxy" },
       { "domain_suffix": ["t.me", "telegram.org", "telegram.me", "cdn-telegram.org"], "outbound": "proxy" },
       { "ip_cidr": ["91.108.4.0/22", "91.108.8.0/22", "91.108.12.0/22", "91.108.16.0/22", "91.108.56.0/22", "149.154.160.0/20"], "outbound": "proxy" },
@@ -130,19 +111,7 @@
         "domain_suffix": [
           "speedtest.net", "fast.com", "speed.cloudflare.com",
           "speedtestcustom.com", "ooklaserver.net",
-          "gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com",
-          "ai.google.dev", "ai.googleusercontent.com",
-          "googleapis.com", "gstatic.com",
-          "clients6.google.com", "clients4.google.com",
-          "firebaseinstallations.googleapis.com", "firebaseremoteconfig.googleapis.com",
-          "meet.google.com", "hangouts.googleapis.com", "meetings.googleapis.com"
-        ],
-        "outbound": "proxy"
-      },
-      {
-        "domain_suffix": [
-          "github.com", "githubusercontent.com", "raw.githubusercontent.com",
-          "gist.github.com", "githubassets.com", "github.dev", "github.io"
+          "gemini.google.com", "bard.google.com", "generativelanguage.googleapis.com"
         ],
         "outbound": "proxy"
       },
@@ -164,9 +133,7 @@
         ],
         "outbound": "proxy"
       },
-      { "domain_suffix": ["2ip.io", "whoer.net", "ipleak.net"], "outbound": "proxy" },
-      { "domain_suffix": ["apple.com", "icloud.com", "mzstatic.com", "akamaized.net", "apple-cloudkit.com", "app-attest.apple.com", "push.apple.com"], "outbound": "proxy" },
-
+      { "domain_suffix": ["2ip.ru", "whoer.net", "ipleak.net"], "outbound": "proxy" },
       { "outbound": "direct" }
     ],
     "final": "direct",
